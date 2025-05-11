@@ -41,7 +41,6 @@ async function Page({ params }: PageProps) {
     await ragChat.context.add({
       type: "html",
       source: reconstructedUrl,
-      config: { chunkOverlap: 50, chunkSize: 200 },
     });
 
     await redis.sadd("indexed-urls", reconstructedUrl);

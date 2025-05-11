@@ -11,7 +11,7 @@ function ChatWrapper({
   sessionId: string;
   initialMessages: Message[];
 }) {
-  const { messages, handleInputChange, input, handleSubmit, setInput } =
+  const { messages, handleInputChange, input, handleSubmit, setInput, status } =
     useChat({
       api: "/api/chat-stream",
       body: { sessionId },
@@ -20,8 +20,8 @@ function ChatWrapper({
 
   return (
     <div className="relative min-h-full bg-zinc-900 flex divide-y divide-zinc-700 flex-col justify-between gap-2">
-      <div className="flex-1 text-white bg-zinc-800 justify-between flex flex-col pb-32">
-        <Messages messages={messages} />
+      <div className="flex-1 text-white bg-zinc-800 justify-between flex flex-col">
+        <Messages messages={messages} status={status} />
       </div>
 
       <ChatInput
@@ -29,6 +29,7 @@ function ChatWrapper({
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
         setInput={setInput}
+        status={status}
       />
     </div>
   );

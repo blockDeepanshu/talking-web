@@ -1,7 +1,8 @@
 "use client";
 
 import { Button } from "@heroui/react";
-import { Send } from "lucide-react";
+
+import { LoaderCircleIcon, Send } from "lucide-react";
 import { type useChat } from "@ai-sdk/react";
 
 type SetInput = ReturnType<typeof useChat>["setInput"];
@@ -13,6 +14,7 @@ interface ChatInputProps {
   setInput: SetInput;
   handleInputChange: HandleInputChange;
   handleSubmit: HandleSubmit;
+  status: "submitted" | "streaming" | "ready" | "error";
 }
 
 export default function ChatInput({
@@ -20,6 +22,7 @@ export default function ChatInput({
   setInput,
   handleInputChange,
   handleSubmit,
+  status,
 }: ChatInputProps) {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-zinc-900 p-4 shadow-lg z-10">
@@ -53,9 +56,11 @@ export default function ChatInput({
             focus:border-opacity-80
             focus:outline-none "
         />
+
         <Button
           size="md"
           type="submit"
+          disabled={status !== "ready"}
           className="
             bg-zinc-700
             hover:bg-zinc-600
@@ -66,7 +71,11 @@ export default function ChatInput({
             cursor-pointer
           "
         >
-          <Send className="w-5 h-5" />
+          {status !== "ready" ? (
+            <LoaderCircleIcon className="w-5 h-5 animate-spin " />
+          ) : (
+            <Send className="w-5 h-5" />
+          )}
         </Button>
       </form>
     </div>
