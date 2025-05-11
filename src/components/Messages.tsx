@@ -48,7 +48,7 @@ export default function Messages({ messages, status }: MessagesProps) {
       ) : (
         <div className="flex flex-1 flex-col items-center justify-center gap-2">
           <MessageSquare className="size-8 text-blue-500" />
-          <h3 className="text-xl font-semibold text-white">You're all set</h3>
+          <h3 className="text-xl font-semibold text-white">{`You're all set`}</h3>
           <p className="text-sm text-zinc-500">
             Ask your first question to get started.
           </p>

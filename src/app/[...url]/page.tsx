@@ -3,12 +3,6 @@ import { ragChat } from "@/lib/rag-chat";
 import { redis } from "@/lib/redis";
 import { cookies } from "next/headers";
 
-interface PageProps {
-  params: {
-    url: string | string[] | undefined;
-  };
-}
-
 const reconstructUrl = ({ url }: { url: string[] }) => {
   const decodedComponents = url.map((component) =>
     decodeURIComponent(component)
@@ -17,8 +11,8 @@ const reconstructUrl = ({ url }: { url: string[] }) => {
   return decodedComponents.join("/");
 };
 
-async function Page({ params }: PageProps) {
-  const { url } = await params;
+async function Page({ params }: { params: { url?: string[] } }) {
+  const { url } = params;
 
   const reconstructedUrl = reconstructUrl({ url: url as string[] });
 
