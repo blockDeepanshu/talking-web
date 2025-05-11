@@ -12,7 +12,7 @@ const reconstructUrl = ({ url }: { url: string[] }) => {
 };
 
 async function Page({ params }: { params: { url?: string[] } }) {
-  const { url } = params;
+  const { url } = await params;
 
   const reconstructedUrl = reconstructUrl({ url: url as string[] });
 

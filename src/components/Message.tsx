@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { User2 as UserIcon, Bot as BotIcon } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 interface MessageProps {
   content: string;
@@ -68,7 +69,7 @@ export default function Message({
                   isUserMessage ? "text-white" : "text-zinc-300"
                 )}
               >
-                {content}
+                <ReactMarkdown>{content}</ReactMarkdown>
               </p>
             )}
           </div>
